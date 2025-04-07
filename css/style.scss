@@ -1,0 +1,415 @@
+$breakpoints: (
+  "sp": "screen and (max-width: 480px)",
+  "tab": "screen and (max-width: 768px)",
+  "pc": "screen and (max-width: 900px)",
+) !default;
+
+@mixin mq($breakpoint: sp) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+$fontsizeMedium: 14px;
+
+/* 共通部品 */
+html {
+  font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+  color: #333;
+  font-size: 12px;
+  background-color: #fff;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 1360px;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+dt {
+  font-weight: normal;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+// ==============
+// ヘッダー
+// ==============
+.header {
+  width: 100%;
+  height: 80px;
+  //   padding: 30px 160px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  img {
+    max-width: 180px;
+    height: auto;
+  }
+
+  &-hamburger {
+    //   border: 1px solid #333;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transition: all 0.5s;
+    cursor: pointer;
+    z-index: 20;
+
+    span {
+      display: block;
+      position: absolute;
+      width: 30px;
+      height: 2px;
+      background-color: #333;
+      border-radius: 4px;
+      transition: all 0.5s;
+
+      &:nth-child(1) {
+        top: 10px;
+      }
+      &:nth-child(2) {
+        bottom: 10px;
+      }
+    }
+  }
+}
+
+.nav {
+  &-list {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    color: #fff;
+    padding: 36px 50px;
+    transition: all 0.5s;
+    z-index: 20;
+    opacity: 0;
+    font-size: $fontsizeMedium;
+    &-item {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+// ハンバーガー押下後
+.mask {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -100;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.open {
+  &-mask {
+    opacity: 0.8;
+    visibility: visible;
+    z-index: 10;
+  }
+
+  &-nav {
+    left: 0;
+    opacity: 1;
+  }
+
+  &-btn {
+    span {
+      background-color: #fff;
+
+      &:nth-child(1) {
+        -webkit-transform: translateY(4px) rotate(-45deg);
+        transform: translateY(4px) rotate(-45deg);
+      }
+      &:nth-child(2) {
+        -webkit-transform: translateY(-4px) rotate(45deg);
+        transform: translateY(-4px) rotate(45deg);
+      }
+    }
+  }
+}
+
+.main-container {
+  margin-top: 80px;
+  h1 {
+    margin: 80px 0 34px;
+    font-size: $fontsizeMedium;
+  }
+  // =========
+  // プロダクトページ
+  // =========
+
+  &-products {
+    h1 {
+      margin: 80px 0 34px;
+      font-size: $fontsizeMedium;
+    }
+  }
+
+  &-products-contents {
+    h1 {
+      font-size: $fontsizeMedium;
+      margin: 80px 0 34px;
+    }
+  }
+}
+
+.goods-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 34px;
+
+  @include mq($breakpoint: pc) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+  }
+  // =========
+  // プロダクトページ
+  // =========
+  &-products {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 34px;
+
+    @include mq($breakpoint: pc) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+  &-products2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 34px;
+
+    @include mq($breakpoint: pc) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+  }
+
+  &-item {
+    img {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+}
+
+.item-title {
+  margin: 10px 0 4px;
+}
+
+.viewMore-link {
+  display: block;
+  margin: 44px auto 129px;
+  text-align: center;
+
+  @include mq($breakpoint: pc) {
+    margin-bottom: 113px;
+  }
+}
+
+// =============
+// フッター
+// =============
+
+.footer {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+
+  @include mq($breakpoint: pc) {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &-contents {
+    &-left {
+      display: flex;
+      gap: 30px;
+    }
+    &-right {
+      @include mq($breakpoint: pc) {
+        align-items: start;
+      }
+    }
+  }
+}
+
+// =========
+// プロダクトページ
+// =========
+.pagenaition {
+  display: flex;
+  gap: 41px;
+  justify-content: center;
+  margin: 44px 0 130px;
+
+  &-link {
+    a:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
+// =========
+// 詳細ページ
+// =========
+.products-contents {
+  display: flex;
+  justify-content: space-between;
+  gap: 64px;
+  margin-bottom: 130px;
+  max-width: 800px;
+
+  @include mq($breakpoint: pc) {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  img {
+    max-width: 400px;
+    max-height: 400px;
+    width: 100%;
+    height: auto;
+
+    @include mq($breakpoint: pc) {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  &-textarea {
+    display: flex;
+    flex-direction: column;
+    font-size: $fontsizeMedium;
+
+    a {
+      text-align: center;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  &-text {
+    margin-bottom: 50px;
+  }
+
+  &-info {
+    margin: 34px 0 76px;
+
+    &-item {
+      display: flex;
+
+      dt {
+        width: 30%;
+      }
+
+      dd {
+        width: 70%;
+      }
+    }
+  }
+}
+
+// =========
+// アバウトページ
+// =========
+.about {
+  &-textarea {
+    margin-bottom: 270px;
+    max-width: 600px;
+
+    @include mq($breakpoint: pc) {
+      margin-bottom: 145px;
+    }
+  }
+
+  &-text {
+    font-size: $fontsizeMedium;
+    &:nth-child(1) {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+// =========
+// 会社ページ
+// =========
+.companyInfo {
+  max-width: 600px;
+  margin-bottom: 126px;
+
+  h1 {
+    font-size: $fontsizeMedium;
+  }
+
+  &-item {
+    font-size: $fontsizeMedium;
+    display: flex;
+    margin-bottom: 42px;
+
+    @include mq($breakpoint: pc) {
+      flex-direction: column;
+      margin-bottom: 0;
+    }
+
+    &:last-child {
+      @include mq($breakpoint: pc) {
+        margin-bottom: 52px;
+      }
+    }
+
+    dt {
+      padding: 10px;
+      width: 30%;
+      border-bottom: 1px solid #dcdbdb;
+
+      @include mq($breakpoint: pc) {
+        width: 100%;
+        border-bottom: none;
+      }
+    }
+
+    dd {
+      padding: 10px;
+      width: 70%;
+      border-bottom: 1px solid #dcdbdb;
+
+      @include mq($breakpoint: pc) {
+        width: 100%;
+      }
+    }
+  }
+}
+// =========
+// マップページ
+// =========
+.map-container {
+  iframe {
+    width: 100%;
+    max-height: 300px;
+    height: 300px;
+  }
+}
