@@ -288,10 +288,9 @@ a:hover {
   }
 
   img {
-    max-width: 400px;
-    max-height: 400px;
-    width: 100%;
-    height: auto;
+    object-fit: contain;
+    width: 50%;
+    height: 300px;
 
     @include mq($breakpoint: pc) {
       max-width: 100%;
