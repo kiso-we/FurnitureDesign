@@ -230,10 +230,12 @@ a:hover {
   }
 }
 .products-contents img {
-  -o-object-fit: contain;
-     object-fit: contain;
-  width: 50%;
-  height: 300px;
+  max-width: 400px;
+  max-height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 @media screen and (max-width: 900px) {
   .products-contents img {
